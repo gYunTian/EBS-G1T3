@@ -1,0 +1,26 @@
+{
+  "name": "EBS-G1T3",
+  "version": "1.0.0",
+  "description": "EBS G1T3 Project",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^4",
+    "@sap/hana-client": "^2.6.54",
+    "express": "^4"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sql"
+      }
+    }
+  },
+  "devDependencies": {
+    "sqlite3": "^5"
+  },
+  "scripts": {
+    "start": "npx cds run"
+  }
+}
