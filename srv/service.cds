@@ -10,17 +10,18 @@ service api {
     // } where u.userID = uc.user;
 
     //entity UserChairity as projection on cloud.UserChairity;
-
-    entity User as projection on cloud.User;
-    entity User2Charity as projection on cloud.User2Charity;
-    entity Charity as projection on cloud.Charity;
-
-    entity CharityRegion as projection on cloud.CharityRegion;
-    entity Region as projection on cloud.Region;
-    entity Beneficiary as projection on cloud.Beneficiary;
-    entity BeneficiaryStock as projection on cloud.BeneficiaryStock;
-    entity Stock as projection on cloud.Stock;
-    entity Schedule as projection on cloud.Schedule;
+    
+    entity User as projection on cloud.Users;
+    entity UserCharity as projection on cloud.UsersCharities;
+    entity Charity as projection on cloud.Charities;
+    entity CharityRegion as projection on cloud.CharitiesRegions;
+    entity Region as projection on cloud.Regions;
+    entity Beneficiary as projection on cloud.Beneficiaries;
+    entity BeneficiaryStock as projection on cloud.BeneficiariesStocks;
+    entity Stock as projection on cloud.Stocks;
+    entity Schedule as projection on cloud.Schedules;
+    entity Task as projection on cloud.Tasks;
+    entity FoodList as projection on cloud.FoodList;
 }
 
 //select * from user inner join userCharity on user.userid = usercharity.userid

@@ -1,100 +1,148 @@
 namespace scp.cloud;
 
-using {
-  cuid,
-  managed,
-  sap.common
-} from '@sap/cds/common';
-
-entity User {
-  key userID       : String(10)               @title : 'UserID';
-      name         : String(50)               @title : 'Name';
-      password     : String(50)               @title : 'Password';
-      userType     : String(50)               @title : 'UserType';
-      associatedCharity: Association to many User2Charity on associatedCharity.user = $self;
-      //assignedUser : Association to many Charity on assignedUser.assignedCharity = userID;
+type UserType : String enum {
+  Volunteer;
+  Admin;
+  MSF;
 }
 
-
-entity User2Charity {
-  key user : Association to User;
-  key charity : Association to Charity;
+entity Users {
+  key userID    : UUID      @odata.Type : 'Edm.String'  @title : 'UserID';
+      email     : String(50)@title      : 'Email';
+      name      : String(50)@title      : 'Username';
+      password  : String(50)@title      : 'Password';
+      userType  : UserType  @title      : 'UserType';
+      Charities : Association to many UsersCharities
+                    on Charities.user = $self;
 }
 
-
-entity Charity {
-  key charityID : String(10) @title : 'CharityID';
-      name      : String(50) @title : 'Name';
-      address : String(100) @title : 'Address';
-      // assignedCharity: Association to User;
-      associatedUser: Association to many User2Charity on associatedUser.charity = $self;
-      regions: Association to many Region on regions.associatedRegion = $self;
+entity UsersCharities {
+  key user    : Association to Users;
+  key charity : Association to Charities;
 }
 
-entity CharityRegion {
-  key charityID : Association to Charity  @title : 'CharityID';
-  key regionID      : Association to Region  @title : 'RegionID';
-      //associatedChairityRegion: Association to Region on associatedChairityRegion.associatedRegion = $self;
+entity Charities {
+  key charityID : UUID       @odata.Type : 'Edm.String'  @title : 'CharityID';
+      name      : String(50) @title      : 'CharityName';
+      address   : String(100)@title      : 'Address';
+      users     : Association to many UsersCharities
+                    on users.charity = $self;
+      Regions   : Association to many CharitiesRegions
+                    on Regions.charity = $self;
 }
 
-entity Region {
-  key regionID  : String(10) @title : 'RegionID';
-      name      : String(50) @title : 'Name';
-      associatedRegion: Association to Charity;
+entity CharitiesRegions {
+  key charity : Association to Charities @title : 'Charity';
+  key region  : Association to Regions   @title : 'Region';
 }
 
-
-
-
-entity Beneficiary : managed {
-  key beneficiaryID       : String(10) @title : 'BeneficiaryID';
-  regionID                : String(50) @title : 'RegionID';
-  address                 : String(50) @title: 'Adddress';
-  householdSize           : Integer @title: 'HouseholdSize';
-  perCapitalIncome        : Decimal(10,3) @title : 'PerCapitalIncome';
-  religion                : String(50) @title : 'Religion';
-  race                    : String(50) @title : 'Race';
-  numWorkingAdults        : Integer @title : 'NumWorkingAdults';
-  noOfChildren            : Integer @title : 'NoOfChildren';
-  dietaryRestrictions    : String(50) @title : 'DietaryRestrictionns';
-
+type RegionName : String enum {
+  North;
+  South;
+  East;
+  West;
+  central;
+  NorthEast;
+  NorthWest;
+  SouthEast;
+  SouthWest;
 }
 
-entity BeneficiaryStock : managed {
-  key beneficiaryID : Association to Beneficiary  @title : 'BeneficiaryID';
-      stockID      : Association to Stock @title : 'StockID';
-      stockCount: Integer @title : 'StockCount';
+entity Regions {
+  key regionID  : UUID       @odata.Type : 'Edm.String'  @title : 'RegionID';
+      name      : RegionName @title      : 'RegionName';
+      Charities : Association to many CharitiesRegions
+                    on Charities.region = $self;
 }
 
-entity Stock : managed {
-  key stockID           : String(10) @title : 'StockID';
-      name      : String(50) @title : 'Name';
-      category  : Association to StockType  @title : 'StockType';
+type Religion : String enum {
+  Buddhism;
+  Christianity;
+  Catholicism;
+  Islam;
+  Taoism;
+  Hinduism;
+  Sikhism;
+  Others;
+  None;
 }
 
-entity Schedule : managed {
-  key scheduleID      : String(10) @title : 'ScheduleID';
-  Date                : Date       @title : 'Date';
-  startTime           : String(50) @title : 'StartTime';
-  userID              : String(50) @title:  'UserID';
-  charityID           : Integer    @title: 'ChairityID';
-  stockID             : Integer    @title : 'StockID';
-  stockQuantity       : String(50) @title : 'StockQuantity';
-  deliverStatus       : String(50) @title : 'DeliverStatus';
+type Race : String enum {
+  Chinese;
+  Malay;
+  Indian;
+  Others;
 }
 
-/**
-  codelists
- */
-
-entity StockCodeList : common.CodeList {
-  key code : String(20);
+entity Beneficiaries {
+  key beneficiaryID       : UUID                       @odata.Type : 'Edm.String'  @title : 'BeneficiaryID';
+      regionID            : Association to one Regions @title      : 'RegionID';
+      address             : String(50)                 @title      : 'Adddress';
+      householdSize       : Integer                    @title      : 'HouseholdSize';
+      perCapitalIncome    : Decimal(10, 3)             @title      : 'PerCapitalIncome';
+      religion            : Religion                   @title      : 'Religion';
+      race                : Race                       @title      : 'Race';
+      numWorkingAdults    : Integer                    @title      : 'NumWorkingAdults';
+      noOfChildren        : Integer                    @title      : 'NoOfChildren';
+      dietaryRestrictions : String(100)                @title      : 'DietaryRestrictions';
+      Stocks              : Association to many BeneficiariesStocks
+                              on Stocks.beneficiary = $self;
 }
 
-entity StockType : StockCodeList {}
+entity BeneficiariesStocks {
+  key beneficiary : Association to Beneficiaries @title : 'Beneficiary';
+  key stock       : Association to Stocks        @title : 'Stock';
+      stockCount  : Integer                      @title : 'StockCount';
+}
 
-// entity UserCodeList : common.CodeList {
-//   key code : String(20);
-// }
+type Category : String enum {
+  Vegetable;
+  Fruit;
+  MeatAndPoultry;
+  Seafood;
+  Dairy;
+  Beverage;
+  BreadOrBakery;
+  Canned;
+  Frozen;
+  Instant;
+  DryGoods;
+  Grain;
+}
 
-// entity UserTypes : UserCodeList {}
+entity Stocks {
+  key stockID       : UUID      @odata.Type : 'Edm.String'  @title : 'StockID';
+      name          : String(50)@title      : 'StockName';
+      category      : Category  @title      : 'Category';
+      Beneficiaries : Association to many BeneficiariesStocks
+                        on Beneficiaries.stock = $self;
+}
+
+entity Schedules {
+  key scheduleID : UUID                         @odata.Type : 'Edm.String'  @title : 'ScheduleID';
+  key charity    : Association to one Charities @title      : 'Charity';
+      date       : Date                         @title      : 'Date';
+      startTime  : String(50)                   @title      : 'StartTime';
+      Details    : Composition of many Tasks
+                     on Details.parent = $self;
+}
+
+type DeliveryStatus : String enum {
+  Completed;
+  NotCompleted;
+}
+
+entity Tasks { // shall be accessed through Orders only
+  key parent        : Association to Schedules;
+  key volunteer     : Association to one Users;
+  key beneficiary   : Association to one Beneficiaries;
+      Food          : Composition of many FoodList
+                        on Food.parent = $self;
+      deliverStatus : DeliveryStatus @title : 'DeliveryStatus';
+}
+
+entity FoodList {
+  key parent        : Association to Tasks;
+  key stock         : Association to one Stocks;
+      stockQuantity : Integer @title : 'StockQuantity';
+}
