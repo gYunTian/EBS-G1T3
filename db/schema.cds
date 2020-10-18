@@ -28,6 +28,8 @@ entity Charities {
                     on users.charity = $self;
       Regions   : Association to many CharitiesRegions
                     on Regions.charity = $self;
+      schedules : Association to many Schedules
+                    on schedules.charity = $self;
 }
 
 entity CharitiesRegions {
@@ -36,8 +38,8 @@ entity CharitiesRegions {
 }
 
 entity Regions {
-  key regionID  : UUID       @odata.Type : 'Edm.String'  @title : 'RegionID';
-      name      : String(20) @title      : 'RegionName';
+  key regionID  : UUID      @odata.Type : 'Edm.String'  @title : 'RegionID';
+      name      : String(20)@title      : 'RegionName';
       Charities : Association to many CharitiesRegions
                     on Charities.region = $self;
 }
@@ -106,10 +108,10 @@ entity Stocks {
 }
 
 entity Schedules {
-  key scheduleID : UUID                         @odata.Type : 'Edm.String'  @title : 'ScheduleID';
-  key charity    : Association to one Charities @title      : 'Charity';
-      date       : Date                         @title      : 'Date';
-      startTime  : String(50)                   @title      : 'StartTime';
+  key scheduleID : UUID                     @odata.Type : 'Edm.String'  @title : 'ScheduleID';
+      charity    : Association to Charities @title      : 'Charity';
+      date       : Date                     @title      : 'Date';
+      startTime  : String(50)               @title      : 'StartTime';
       Details    : Composition of many Tasks
                      on Details.parent = $self;
 }
