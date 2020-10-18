@@ -6,12 +6,10 @@ type UserType : String enum {
   MSF;
 }
 
-
 entity Users {
   key userID    : UUID      @odata.Type : 'Edm.String'  @title : 'UserID';
       email     : String(50)@title      : 'Email';
       name      : String(50)@title      : 'Username';
-      password  : String(50)@title      : 'Password';
       userType  : UserType  @title      : 'UserType';
       Charities : Association to many UsersCharities
                     on Charities.user = $self;
@@ -28,32 +26,20 @@ entity Charities {
       address   : String(100)@title      : 'Address';
       users     : Association to many UsersCharities
                     on users.charity = $self;
-      // Regions   : Association to many CharitiesRegions
-      //               on Regions.charity = $self;
+      Regions   : Association to many CharitiesRegions
+                    on Regions.charity = $self;
 }
 
-// entity CharitiesRegions {
-//   key charity : Association to Charities @title : 'Charity';
-//   key region  : Association to Regions   @title : 'Region';
-// }
-
-//type RegionName : String enum {
-//  North;
-//  South;
-//  East;
-//  West;
-//  central;
-//  NorthEast;
-//  NorthWest;
-//  SouthEast;
-//  SouthWest;
-//}
+entity CharitiesRegions {
+  key charity : Association to Charities @title : 'Charity';
+  key region  : Association to Regions   @title : 'Region';
+}
 
 entity Regions {
   key regionID  : UUID       @odata.Type : 'Edm.String'  @title : 'RegionID';
       name      : String(20) @title      : 'RegionName';
-      // Charities : Association to many CharitiesRegions
-      //               on Charities.region = $self;
+      Charities : Association to many CharitiesRegions
+                    on Charities.region = $self;
 }
 
 type Religion : String enum {
