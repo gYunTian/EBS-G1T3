@@ -11,7 +11,7 @@ entity Users {
       email     : String(50)@title      : 'Email';
       name      : String(50)@title      : 'Username';
       userType  : UserType  @title      : 'UserType';
-      Charities : Association to many UsersCharities
+      Charities : Composition of many UsersCharities
                     on Charities.user = $self;
 }
 
@@ -24,9 +24,9 @@ entity Charities {
   key charityID : UUID       @odata.Type : 'Edm.String'  @title : 'CharityID';
       name      : String(50) @title      : 'CharityName';
       address   : String(100)@title      : 'Address';
-      users     : Association to many UsersCharities
+      users     : Composition of many UsersCharities
                     on users.charity = $self;
-      Regions   : Association to many CharitiesRegions
+      Regions   : Composition of many CharitiesRegions
                     on Regions.charity = $self;
 }
 
@@ -38,7 +38,7 @@ entity CharitiesRegions {
 entity Regions {
   key regionID  : UUID       @odata.Type : 'Edm.String'  @title : 'RegionID';
       name      : String(20) @title      : 'RegionName';
-      Charities : Association to many CharitiesRegions
+      Charities : Composition of many CharitiesRegions
                     on Charities.region = $self;
 }
 
@@ -72,7 +72,7 @@ entity Beneficiaries {
       numWorkingAdults    : Integer                    @title      : 'NumWorkingAdults';
       noOfChildren        : Integer                    @title      : 'NoOfChildren';
       dietaryRestrictions : String(100)                @title      : 'DietaryRestrictions';
-      Stocks              : Association to many BeneficiariesStocks
+      Stocks              : Composition of many BeneficiariesStocks
                               on Stocks.beneficiary = $self;
 }
 
@@ -101,13 +101,13 @@ entity Stocks {
   key stockID       : UUID      @odata.Type : 'Edm.String'  @title : 'StockID';
       name          : String(50)@title      : 'StockName';
       category      : Category  @title      : 'Category';
-      Beneficiaries : Association to many BeneficiariesStocks
+      Beneficiaries : Composition of many BeneficiariesStocks
                         on Beneficiaries.stock = $self;
 }
 
 entity Schedules {
   key scheduleID : UUID                         @odata.Type : 'Edm.String'  @title : 'ScheduleID';
-  key charity    : Association to one Charities @title      : 'Charity';
+      charity    : Association to Charities     @title      : 'Charity';
       date       : Date                         @title      : 'Date';
       startTime  : String(50)                   @title      : 'StartTime';
       Details    : Composition of many Tasks
