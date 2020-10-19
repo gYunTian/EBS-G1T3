@@ -1,0 +1,103 @@
+GET http://localhost:4004/api/User
+###
+POST http://localhost:4004/api/Stock
+Content-Type: application/json
+
+{"name": "chicken", "category": "MeatAndPoultry"}
+
+###
+PUT http://localhost:4004/api/Stock('58f426c5-437e-4f02-8de2-b1ec7dac35eb')
+Content-Type: application/json
+
+{"name": "fish", "category":"Seafood"}
+
+###
+POST http://localhost:4004/api/BeneficiaryStock
+Content-Type: application/json
+
+{"beneficiary":"bene001", "stock":"58f426c5-437e-4f02-8de2-b1ec7dac35eb", "stockCount": 1}
+
+###
+GET http://localhost:4004/api/Schedule
+
+###
+GET http://localhost:4004/api/Charity
+
+###
+POST http://localhost:4004/api/Schedule
+Content-Type: application/json
+
+{"date": "2020-10-10", "startTime": "9:30 AM", "charity_charityID": "6f2d8e67-d90c-4cfb-b47a-d4a25c792e36"} 
+
+###
+GET http://localhost:4004/api/Beneficiary
+
+###
+GET http://localhost:4004/api/Region
+
+###
+POST http://localhost:4004/api/Beneficiary
+Content-Type: application/json;IEEE754Compatible=true
+
+{"address": "tester",
+"householdSize": 1,
+"perCapitalIncome": "400.333",
+"religion": "Buddhism",
+"race": "Chinese",
+"numWorkingAdults": 1,
+"noOfChildren": 0,
+"dietaryRestrictions": "Diabetes",
+"regionID_regionID": null,
+"Stocks": 
+[
+    {
+        "stock":	"087c196b-c244-4d30-bf71-d88c1233de41"
+    }
+    
+]
+}
+
+###
+GET  http://localhost:4004/api/Beneficiary('4eb5805c-c5a1-4d9b-9c73-4a87ffc8db92')?$expand=Stocks
+
+###
+POST http://localhost:4004/api/Stock
+Content-Type: application/json
+
+ {
+    "stockID": "rice002",
+    "name": "SONGHE Thai Fragrant Rice 25KG",
+    "category": "grain"
+}
+
+###
+POST http://localhost:4004/api/Beneficiary
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "beneficiaryID": "bene001",
+    "address": "tester",
+    "householdSize": 1,
+    "perCapitalIncome": "400.333",
+    "religion": "Buddhism",
+    "race": "Chinese",
+    "numWorkingAdults": 1,
+    "noOfChildren": 0,
+    "dietaryRestrictions": "Diabetes",
+    "regionID_regionID": null
+}
+
+###
+
+POST http://localhost:4004/api/BeneficiaryStock
+Content-Type: application/json
+
+ {
+    "beneficiary": {
+        "beneficiaryID": "bene001"
+    },
+    "stock": {
+        "stockID": "rice002"
+    },
+    "stockCount": 5
+}
