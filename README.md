@@ -1,3 +1,24 @@
+# DEEP INSERT
+On postman: 
+{"address": "tester",
+"householdSize": 1,
+"perCapitalIncome": "400",
+"religion": "Buddhism",
+"race": "Chinese",
+"numWorkingAdults": 1,
+"noOfChildren": 0,
+"dietaryRestrictions": "Diabetes",
+"regionID_regionID": null,
+"Stocks": 
+    [{
+        "stock_stockID": "beverage001",
+        "stockCount": 1
+    }]
+}
+
+
+
+
 # Getting Started
 
 Welcome to your new project.
