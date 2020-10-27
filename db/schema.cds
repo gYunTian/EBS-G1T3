@@ -36,8 +36,8 @@ entity CharitiesRegions {
 }
 
 entity Regions {
-  key regionID  : UUID       @odata.Type : 'Edm.String'  @title : 'RegionID';
-      name      : String(20) @title      : 'RegionName';
+  key regionID  : UUID      @odata.Type : 'Edm.String'  @title : 'RegionID';
+      name      : String(20)@title      : 'RegionName';
       Charities : Composition of many CharitiesRegions
                     on Charities.region = $self;
 }
@@ -62,18 +62,19 @@ type Race : String enum {
 }
 
 entity Beneficiaries {
-  key beneficiaryID       : UUID                       @odata.Type : 'Edm.String'  @title : 'BeneficiaryID';
-      regionID            : Association to one Regions @title      : 'RegionID';
-      address             : String(50)                 @title      : 'Adddress';
-      householdSize       : Integer                    @title      : 'HouseholdSize';
-      perCapitalIncome    : Decimal(10, 3)             @title      : 'PerCapitalIncome';
-      religion            : Religion                   @title      : 'Religion';
-      race                : Race                       @title      : 'Race';
-      numWorkingAdults    : Integer                    @title      : 'NumWorkingAdults';
-      noOfChildren        : Integer                    @title      : 'NoOfChildren';
-      dietaryRestrictions : String(100)                @title      : 'DietaryRestrictions';
+  key beneficiaryID       : UUID                         @odata.Type : 'Edm.String'  @title : 'BeneficiaryID';
+      regionID            : Association to one Regions   @title      : 'RegionID';
+      address             : String(50)                   @title      : 'Adddress';
+      householdSize       : Integer                      @title      : 'HouseholdSize';
+      perCapitalIncome    : String(10)                   @title      : 'PerCapitalIncome';
+      religion            : Religion                     @title      : 'Religion';
+      race                : Race                         @title      : 'Race';
+      numWorkingAdults    : Integer                      @title      : 'NumWorkingAdults';
+      noOfChildren        : Integer                      @title      : 'NoOfChildren';
+      dietaryRestrictions : String(100)                  @title      : 'DietaryRestrictions';
       Stocks              : Composition of many BeneficiariesStocks
                               on Stocks.beneficiary = $self;
+      org                 : Association to one Charities @title      : 'org';
 }
 
 entity BeneficiariesStocks {
@@ -106,10 +107,10 @@ entity Stocks {
 }
 
 entity Schedules {
-  key scheduleID : UUID                         @odata.Type : 'Edm.String'  @title : 'ScheduleID';
-      charity    : Association to Charities     @title      : 'Charity';
-      date       : Date                         @title      : 'Date';
-      startTime  : String(50)                   @title      : 'StartTime';
+  key scheduleID : UUID                     @odata.Type : 'Edm.String'  @title : 'ScheduleID';
+      charity    : Association to Charities @title      : 'Charity';
+      date       : Date                     @title      : 'Date';
+      startTime  : String(50)               @title      : 'StartTime';
       Details    : Composition of many Tasks
                      on Details.parent = $self;
 }
