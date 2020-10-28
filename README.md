@@ -17,9 +17,11 @@ On postman:
     }]
 }
 
-
-
-
+# Deployment instructions
+    cds deploy --to hana
+    mbt build
+    cf deploy mta_archives/EBS-G1T3_1.0.0.mtar 
+    
 # Getting Started
 
 Welcome to your new project.
