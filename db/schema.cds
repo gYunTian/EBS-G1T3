@@ -105,6 +105,8 @@ entity Stocks {
       category      : Category  @title      : 'Category';
       Beneficiaries : Composition of many BeneficiariesStocks
                         on Beneficiaries.stock = $self;
+    Baskets: Composition of many FoodBasket 
+            on Baskets.stock = $self;
 }
 
 entity Schedules {
@@ -134,4 +136,17 @@ entity FoodList {
   key parent        : Association to Tasks;
   key stock         : Association to one Stocks;
       stockQuantity : Integer @title : 'StockQuantity';
+}
+
+entity Basket {
+      key BasketID : UUID       @odata.Type : 'Edm.String'  @title : 'BasketID';
+      name      : String(50) @title      : 'BasketName';
+      stocks   : Composition of many FoodBasket
+                    on stocks.basket = $self;
+}
+
+entity FoodBasket {
+  key basket : Association to Basket @title : 'basket';
+  key stock       : Association to Stocks        @title : 'stock';
+  quantity : Integer @title : "ItemQuantity";
 }

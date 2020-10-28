@@ -101,3 +101,51 @@ Content-Type: application/json
     },
     "stockCount": 5
 }
+
+###
+POST  http://localhost:4004/api/FoodBasket
+Content-Type: application/json
+
+{  
+    "basket": {
+        "BasketID": "02"
+    },
+    "stock": {
+         "stockID" : "rice002"
+    },
+    "quantity":4
+}
+
+###
+// sample POST request deep insert
+POST http://localhost:4004/api/Basket
+Content-Type: application/json
+
+{  
+    "BasketID" : "006",
+    "name" : "tester1",
+    "stocks": [{
+        "quantity": 4,
+        "basket_BasketID":"02",
+        "stock_stockID":"rice001"
+    }]
+}
+
+###
+// sample PUT request deep insert
+PUT http://localhost:4004/api/Basket/006
+Content-Type: application/json
+
+{  
+    "BasketID" : "006",
+    "name" : "tester1",
+    "stocks": [{
+        "quantity": 4,
+        "basket_BasketID":"02",
+        "stock_stockID":"rice001"
+    }, 
+    {   "quantity": 4,
+        "basket_BasketID":"02",
+        "stock_stockID":"rice002"}
+    ]
+}
