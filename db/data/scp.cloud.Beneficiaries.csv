@@ -1,10 +1,10 @@
-beneficiaryID;address;householdSize;perCapitalIncome;religion;race;numWorkingAdults;noOfChildren;dietaryRestrictions;regionID_regionID;org_charityID
-bene001;ang mo kio ave 10 blk 555 #09-11; 1; 1000; Buddhism; Chinese; 1; 0; Diabetes;North;charity001
-bene002;jalan kukoh blk 32 #04-11; 4; 600; Islam; Malay; 2; 2; Halal;South;charity001
-bene003;balestier road  blk 103 #09-11; 1; 800; Hinduism; Indian; 1; 0; No Beef;East;charity002
-bene004;ang mo kio ave 3 blk 55 #02-11; 1; 400; Buddhism; Chinese; 1; 0; Diabetes;West;charity002
-bene005;boon keng towner rd blk 108 #09-11; 6; 200; Catholicism; Chinese; 2; 4; High blood pressure;Central;charity003
-bene006;jurong ave 1 blk 123 #09-11; 3; 400; Islam; Malay; 2; 4; High blood pressure;Central;charity005
-bene007;woodlands rd blk 134 #09-11; 2; 900; Hinduism; Indian; 2; 4; High blood pressure;Central;charity001
-bene008;jalan kukoh rd blk 145 #09-11; 4; 200; Buddhism; Chinese; 2; 4; High blood pressure;Central;charity004
-bene009;200 bishan rd blk 56 #09-11; 8; 300; Islam; Malay; 2; 4; High blood pressure;Central;charity002
+beneficiaryID;address;postcode;householdSize;perCapitalIncome;religion;race;numWorkingAdults;noOfChildren;dietaryRestrictions;regionID_regionID;org_charityID
+bene001;Jalan Kukoh Blk 9 #09-11; 161009; 1; 1000; Buddhism; Chinese; 1; 0; Diabetes;Central;charity001
+bene002;Jalan Kukoh Blk 3 #04-11;161003; 4; 600; Islam; Malay; 2; 2; Halal;Central;charity001
+bene003;Circuit Road Blk 62 #02-04; 370062;1; 800; Hinduism; Indian; 1; 0; No Beef;East;charity002
+bene004;Ang Mo Kio Ave 11 Blk 256 #02-11; 560256;1; 400; Buddhism; Chinese; 1; 0; Diabetes;North;charity002
+bene005;Ang Mo Kio Ave 11 Blk 254 #04-11; 560256; 6; 200; Catholicism; Chinese; 2; 4; High blood pressure;North;charity003
+bene006;Teban Gardens Blk 40 #07-07; 600040; 6; 400; Islam; Malay; 2; 4; High Cholesterol;West;charity005
+bene007;Teban Gardens Blk 43 #08-08; 600043; 5; 900; Hinduism; Indian; 2; 3; Low blood pressure;West;charity001
+bene008;Jalan Kukoh Blk 9 #05-121; 161009;6; 200; Taoism; Chinese; 2; 4; High blood pressure;Central;charity004
+bene009;Ang Mo Kio Ave 6 Blk 123 #03-03; 560123; 3; 300; Islam; Malay; 1; 2; Low blood pressure;North;charity002

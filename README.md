@@ -1,6 +1,7 @@
 # DEEP INSERT
 On postman: 
 {"address": "tester",
+"postcode": 000000,
 "householdSize": 1,
 "perCapitalIncome": "400",
 "religion": "Buddhism",

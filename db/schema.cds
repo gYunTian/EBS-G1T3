@@ -65,6 +65,7 @@ entity Beneficiaries {
   key beneficiaryID       : UUID                         @odata.Type : 'Edm.String'  @title : 'BeneficiaryID';
       regionID            : Association to one Regions   @title      : 'RegionID';
       address             : String(50)                   @title      : 'Adddress';
+      postcode					  : Integer											 @title			 : 'Postcode';   
       householdSize       : Integer                      @title      : 'HouseholdSize';
       perCapitalIncome    : String(10)                   @title      : 'PerCapitalIncome';
       religion            : Religion                     @title      : 'Religion';
