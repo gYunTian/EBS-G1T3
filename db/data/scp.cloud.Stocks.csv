@@ -12,3 +12,11 @@ instant001;Instant noodles 5s;Instant
 dairy003;Fresh milk 1l;Dairy
 drygoods001;Crackers 1tin;DryGoods
 beverage001;Milo 1.8kg tin;Beverage
+rice;generic rice;Grain
+beverage;generic beverage;Beverage
+instant;generic instant;Instant
+bread;generic bread;Bread
+egg;generic egg;Egg
+vege;generic vege/fruit;Vege/fruit
+canned;generic canned;Canned
+biscuit;generic biscuit;Biscuit
