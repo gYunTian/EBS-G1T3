@@ -147,6 +147,6 @@ entity Basket {
 
 entity FoodBasket {
   key basket : Association to Basket @title : 'basket';
-  key stock       : Association to Stocks        @title : 'stock';
+  key stock       : Association to Stocks {stockID, name}        @title : 'stock';
   quantity : Integer @title : "ItemQuantity";
 }
