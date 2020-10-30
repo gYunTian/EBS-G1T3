@@ -76,6 +76,7 @@ entity Beneficiaries {
       Stocks              : Composition of many BeneficiariesStocks
                               on Stocks.beneficiary = $self;
       org                 : Association to one Charities @title      : 'org';
+      lastDelivery       : Date                     @title      : 'LastDelivery';
 }
 
 entity BeneficiariesStocks {
