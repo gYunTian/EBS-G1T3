@@ -26,6 +26,8 @@ service api {
     entity FoodList as projection on cloud.FoodList;
     entity Basket as projection on cloud.Basket;
     entity FoodBasket as projection on cloud.FoodBasket;
+    entity ToReview as projection on cloud.ToReview;
+    
 }
 
 //select * from user inner join userCharity on user.userid = usercharity.userid

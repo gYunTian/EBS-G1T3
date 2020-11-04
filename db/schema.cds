@@ -151,3 +151,9 @@ entity FoodBasket {
   key stock       : Association to Stocks {stockID, name}        @title : 'stock';
   quantity : Integer @title : "ItemQuantity";
 }
+
+entity ToReview {
+  Key beneficiaryID: Association to one Beneficiaries @title : 'beneficiaryID';
+  status: String(100) @title      : 'status';
+  other: String(100) @title : 'other';
+}
