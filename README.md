@@ -1,3 +1,12 @@
+# CREATING INDIVIDUAL STOCKS FOR A BENEFICIARY
+POST https://smucf-dev-ebs-g1t3-srv.cfapps.us10.hana.ondemand.com/api/BeneficiaryStock
+
+{
+"stockCount":5000,
+"beneficiary_beneficiaryID": "bene001",
+"stock_stockID": "rice"
+}
+
 # DEEP INSERT, CREATE BENEFICIARY WITH STOCK
 On postman: 
 
