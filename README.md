@@ -1,20 +1,43 @@
-# DEEP INSERT
+# DEEP INSERT, CREATE BENEFICIARY WITH STOCK
 On postman: 
-{"address": "tester",
-"postcode": 000000,
-"householdSize": 1,
-"perCapitalIncome": "400",
-"religion": "Buddhism",
-"race": "Chinese",
-"numWorkingAdults": 1,
-"noOfChildren": 0,
-"dietaryRestrictions": "Diabetes",
-"regionID_regionID": null,
-"Stocks": 
-    [{
-        "stock_stockID": "beverage001",
-        "stockCount": 1
-    }]
+
+{
+    "address": "23 Jalan Lokam",
+    "postcode": 537869,
+    "householdSize": 3,
+    "perCapitalIncome": "800",
+    "religion": "Buddhism",
+    "race": "Chinese",
+    "numWorkingAdults": 1,
+    "noOfChildren": 0,
+    "dietaryRestrictions": "Diabetes",
+    "regionID_regionID": null,
+    "Stocks": [
+        {
+            "stock_stockID": "beverage",
+            "stockCount": 16
+        },
+        {
+            "stock_stockID": "biscuit",
+            "stockCount": 460
+        },
+                {
+            "stock_stockID": "bread",
+            "stockCount": 24
+        },
+                {
+            "stock_stockID": "canned",
+            "stockCount": 8
+        },
+        {
+            "stock_stockID": "egg",
+            "stockCount": 30
+        },
+                {
+            "stock_stockID": "rice",
+            "stockCount": 5000
+        }
+    ]
 }
 
 # Deployment instructions
