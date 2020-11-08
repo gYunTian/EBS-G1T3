@@ -4,5 +4,6 @@
     "**/.git": true,
     "**/.vscode": true
   },
-  "files.watcherExclude": {}
+"files.watcherExclude": {},
+"actions": []
 }
