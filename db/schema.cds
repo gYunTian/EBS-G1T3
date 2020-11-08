@@ -30,6 +30,7 @@ entity Charities {
                     on Regions.charity = $self;
       Stocks    : Composition of many CharitiesStocks
                     on Stocks.charities = $self;
+      Schedules : Association to many Schedules on Schedules.charity = $self;
 }
 
 entity CharitiesRegions {
@@ -129,12 +130,11 @@ type DeliveryStatus : String enum {
 }
 
 entity Tasks { // shall be accessed through Orders only
-  key TaskID        : UUID                  @odata.Type : 'Edm.String'  @title : 'TaskID';
-    parent        : Association to Schedules;
-    volunteer     : Association to one Users;
-    beneficiary   : Association to one Beneficiaries;
-    Food          : Composition of many Basket
-                        on Food.task = $self;
+//   key TaskID        : UUID                  @odata.Type : 'Edm.String'  @title : 'TaskID';
+    key parent        : Association to Schedules;
+    key volunteer     : Association to one Users;
+    key beneficiary   : Association to one Beneficiaries;
+    Food          : Association to one Basket;
     deliverStatus : DeliveryStatus @title : 'DeliveryStatus';
 }
 
@@ -149,13 +149,12 @@ entity Basket {
       name      : String(50) @title      : 'BasketName';
       stocks   : Composition of many FoodBasket
                     on stocks.basket = $self;
-      task: Association to Tasks {TaskID};
 }
 
 entity FoodBasket {
   key basket : Association to Basket @title : 'basket';
   key stock       : Association to CharitiesStocks {charities, stock}      @title : 'stock';
-  quantity : Integer @title : ![ItemQuantity];
+  quantity : Integer @title : 'ItemQuantity';
 }
 
 entity ToReview {
@@ -167,7 +166,7 @@ entity ToReview {
 entity CharitiesStocks {
   key charities : Association to Charities @title : 'Charities';
   key stock       : Association to Stocks {stockID, name}        @title : 'Stock';
-      stockCount  : Integer                      @title : 'StockCount';
-      foodbasket : Composition of many FoodBasket 
-                    on foodbasket.stock = $self;
+  stockCount  : Integer                      @title : 'StockCount';
+  foodbasket : Composition of many FoodBasket 
+                on foodbasket.stock = $self        @title: 'foodbasket'; 
 }

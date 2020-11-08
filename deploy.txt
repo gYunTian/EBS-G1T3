@@ -63,6 +63,6 @@ applications:
       }
   },
   "devDependencies": {
-      "sqlite3": "^5.0.0"
+      "sqlite3": "^5.0.0",
   }
 }

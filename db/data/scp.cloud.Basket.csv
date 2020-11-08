@@ -1,6 +1,6 @@
-BasketID;name;task_TaskID
-01;Diabetic;task001
-02;No Beef;task002
-03;Vegetarian;task003
-04;Low Carb Diet;task004
-05;Lactose Intolerant;task005
+BasketID;name
+01;Diabetic
+02;No Beef
+03;Vegetarian
+04;Low Carb Diet
+05;Lactose Intolerant
