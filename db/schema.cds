@@ -133,7 +133,7 @@ entity Tasks { // shall be accessed through Orders only
     parent        : Association to Schedules;
     volunteer     : Association to one Users;
     beneficiary   : Association to one Beneficiaries;
-    Food          : Composition of many FoodBasket
+    Food          : Composition of many Basket
                         on Food.task = $self;
     deliverStatus : DeliveryStatus @title : 'DeliveryStatus';
 }
@@ -149,13 +149,13 @@ entity Basket {
       name      : String(50) @title      : 'BasketName';
       stocks   : Composition of many FoodBasket
                     on stocks.basket = $self;
+      task: Association to Tasks {TaskID};
 }
 
 entity FoodBasket {
   key basket : Association to Basket @title : 'basket';
   key stock       : Association to CharitiesStocks {charities, stock}      @title : 'stock';
-  quantity : Integer @title : "ItemQuantity";
-  task: Association to Tasks {TaskID};
+  quantity : Integer @title : ![ItemQuantity];
 }
 
 entity ToReview {
