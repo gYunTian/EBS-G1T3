@@ -28,6 +28,9 @@ entity Charities {
                     on users.charity = $self;
       Regions   : Composition of many CharitiesRegions
                     on Regions.charity = $self;
+      Stocks    : Composition of many CharitiesStocks
+                    on Stocks.charities = $self;
+      Schedules : Association to many Schedules on Schedules.charity = $self;
 }
 
 entity CharitiesRegions {
@@ -106,8 +109,10 @@ entity Stocks {
       category      : Category  @title      : 'Category';
       Beneficiaries : Composition of many BeneficiariesStocks
                         on Beneficiaries.stock = $self;
-    Baskets: Composition of many FoodBasket 
-            on Baskets.stock = $self;
+      Charities     : Composition of many CharitiesStocks
+                        on Charities.stock = $self;
+    //   Baskets: Composition of many FoodBasket 
+    //         on Baskets.stock = $self;
 }
 
 entity Schedules {
@@ -125,19 +130,19 @@ type DeliveryStatus : String enum {
 }
 
 entity Tasks { // shall be accessed through Orders only
-  key parent        : Association to Schedules;
-  key volunteer     : Association to one Users;
-  key beneficiary   : Association to one Beneficiaries;
-      Food          : Composition of many FoodList
-                        on Food.parent = $self;
-      deliverStatus : DeliveryStatus @title : 'DeliveryStatus';
+//   key TaskID        : UUID                  @odata.Type : 'Edm.String'  @title : 'TaskID';
+    key parent        : Association to Schedules;
+    key volunteer     : Association to one Users;
+    key beneficiary   : Association to one Beneficiaries;
+    Food          : Association to one Basket;
+    deliverStatus : DeliveryStatus @title : 'DeliveryStatus';
 }
 
-entity FoodList {
-  key parent        : Association to Tasks;
-  key stock         : Association to one Stocks;
-      stockQuantity : Integer @title : 'StockQuantity';
-}
+// entity FoodList {
+//   key parent        : Association to Tasks;
+//   key stock         : Association to one Stocks;
+//       stockQuantity : Integer @title : 'StockQuantity';
+// }
 
 entity Basket {
       key BasketID : UUID       @odata.Type : 'Edm.String'  @title : 'BasketID';
@@ -148,12 +153,20 @@ entity Basket {
 
 entity FoodBasket {
   key basket : Association to Basket @title : 'basket';
-  key stock       : Association to Stocks {stockID, name}        @title : 'stock';
-  quantity : Integer @title : "ItemQuantity";
+  key stock       : Association to CharitiesStocks {charities, stock}      @title : 'stock';
+  quantity : Integer @title : 'ItemQuantity';
 }
 
 entity ToReview {
   Key beneficiaryID: Association to one Beneficiaries @title : 'beneficiaryID';
   status: String(100) @title      : 'status';
   other: String(100) @title : 'other';
+}
+
+entity CharitiesStocks {
+  key charities : Association to Charities @title : 'Charities';
+  key stock       : Association to Stocks {stockID, name}        @title : 'Stock';
+  stockCount  : Integer                      @title : 'StockCount';
+  foodbasket : Composition of many FoodBasket 
+                on foodbasket.stock = $self        @title: 'foodbasket'; 
 }

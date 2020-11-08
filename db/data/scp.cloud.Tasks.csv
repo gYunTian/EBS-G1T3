@@ -1,0 +1,10 @@
+parent_scheduleID;volunteer_userID;beneficiary_beneficiaryID;Food_BasketID;deliverStatus
+schedule001;user001;bene001;01;NotCompleted
+schedule001;user001;bene002;02;NotCompleted
+schedule001;user001;bene003;03;NotCompleted
+schedule001;user001;bene004;04;NotCompleted
+schedule001;user001;bene005;05;NotCompleted
+schedule002;user001;bene002;02;NotCompleted
+schedule002;user001;bene003;03;NotCompleted
+schedule002;user001;bene004;01;NotCompleted
+schedule002;user001;bene005;04;Completed
