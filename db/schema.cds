@@ -76,6 +76,7 @@ entity Beneficiaries {
       numWorkingAdults    : Integer                      @title      : 'NumWorkingAdults';
       noOfChildren        : Integer                      @title      : 'NoOfChildren';
       dietaryRestrictions : String(100)                  @title      : 'DietaryRestrictions';
+      extraCharities      : String(50)                   @title      : 'extraCharities';
       Stocks              : Composition of many BeneficiariesStocks
                               on Stocks.beneficiary = $self;
       org                 : Association to one Charities @title      : 'org';
