@@ -1,0 +1,10 @@
+parent_scheduleID;volunteer_userID;beneficiary_beneficiaryID;deliverStatus;
+schedule001;user001;bene001;NotCompleted;
+schedule001;user001;bene002;NotCompleted;
+schedule001;user001;bene003;NotCompleted;
+schedule001;user001;bene003;NotCompleted;
+schedule001;user001;bene001;NotCompleted;
+schedule002;user001;bene002;NotCompleted;
+schedule002;user001;bene003;NotCompleted;
+schedule002;user001;bene004;NotCompleted;
+schedule002;user001;bene005;Completed;
