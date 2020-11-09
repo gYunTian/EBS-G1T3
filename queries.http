@@ -156,18 +156,17 @@ GET http://localhost:4004/api/Task?$expand=Food($expand=stocks)
 
 ###
 // sample POST create schedule
-PUT http://localhost:4004/api/Schedule
+POST http://localhost:4004/api/Schedule
 Content-Type: application/json
 
 { 
-    "scheduleID": "newtest",
     "date" : "2020-11-08",
     "startTime": "9:00 AM",
     "charity_charityID" : "charity001",
     "Details": [
         {
             "deliverStatus": "NotCompleted",
-            "parent_scheduleID": "necds deploy --to hanawtest",
+            "parent_scheduleID": "newtest",
             "volunteer_userID" : "user001",
             "beneficiary_beneficiaryID" : "bene001",
             "Food_BasketID": "01"
