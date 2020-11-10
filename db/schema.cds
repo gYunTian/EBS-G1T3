@@ -131,10 +131,10 @@ type DeliveryStatus : String enum {
 }
 
 entity Tasks { // shall be accessed through Orders only
-//   key TaskID        : UUID                  @odata.Type : 'Edm.String'  @title : 'TaskID';
-    key parent        : Association to Schedules;
-    key volunteer     : Association to one Users;
-    key beneficiary   : Association to one Beneficiaries;
+  key TaskID        : UUID                  @odata.Type : 'Edm.String'  @title : 'TaskID';
+    parent        : Association to Schedules;
+    volunteer     : Association to one Users;
+    beneficiary   : Association to one Beneficiaries;
     Food          : Association to one Basket;
     deliverStatus : DeliveryStatus @title : 'DeliveryStatus';
 }
