@@ -81,6 +81,7 @@ entity Beneficiaries {
                               on Stocks.beneficiary = $self;
       org                 : Association to one Charities @title      : 'org';
       lastDelivery       : Date                     @title      : 'LastDelivery';
+      name                 : String(50)                 @title      : 'Name'
 }
 
 entity BeneficiariesStocks {
