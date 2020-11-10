@@ -173,3 +173,21 @@ Content-Type: application/json
         }
     ]
 }
+###
+//
+PUT  http://localhost:4004/api/Task?$top=1&$filter=parent_scheduleID eq 'schedule001' and volunteer_userID eq 'user001' and beneficiary_beneficiaryID eq 'bene001'
+Content-Type: application/json
+
+{
+            "deliverStatus": "Completed",
+            "parent_scheduleID": "schedule001",
+            "volunteer_userID" : "user001",
+            "beneficiary_beneficiaryID" : "bene001",
+            "Food_BasketID": "01"
+}
+###
+GET http://localhost:4004/api/Task?$filter=parent_scheduleID eq 'schedule001' and volunteer_userID eq 'user001'
+
+
+###
+GET http://localhost:4004/api/Task('d94a6e51-9d2f-4ac6-8239-6bfb92b0d226')

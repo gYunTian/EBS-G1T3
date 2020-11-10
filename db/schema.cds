@@ -171,3 +171,9 @@ entity CharitiesStocks {
   foodbasket : Composition of many FoodBasket 
                 on foodbasket.stock = $self        @title: 'foodbasket'; 
 }
+
+entity DataRequest {
+  Key beneficiaryID: Association to one Beneficiaries @title : 'beneficiaryID';
+  status: String(100) @title      : 'status';
+  other: String(100) @title : 'other';
+}
